@@ -43,7 +43,7 @@ cg_base_public_h = \
 	cg-types.h 			\
 	cg-fence.h       		\
 	cg-version.h		\
-	cg.h
+	cglib.h
 
 # nop driver
 cg_driver_sources = \
@@ -130,7 +130,7 @@ cg_base_sources_c = \
 	cg-display.h			\
 	cg-display.c			\
 	cg-driver.h				\
-	cg.c				\
+	cglib.c				\
 	cg-pixel-format-private.h		\
 	cg-pixel-format.c			\
 	cg-object-private.h			\
