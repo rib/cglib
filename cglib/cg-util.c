@@ -68,7 +68,7 @@ _cg_util_one_at_a_time_mix(unsigned int hash)
 }
 
 /* The 'ffs' function is part of C99 so it isn't always available */
-#ifndef HAVE_FFS
+#ifndef CG_HAVE_FFS
 
 int
 _cg_util_ffs(int num)
@@ -85,11 +85,11 @@ _cg_util_ffs(int num)
 
     return i;
 }
-#endif /* HAVE_FFS */
+#endif /* CG_HAVE_FFS */
 
 /* The 'ffsl' is non-standard but when building with GCC we'll use its
    builtin instead */
-#ifndef CG_UTIL_HAVE_BUILTIN_FFSL
+#ifndef CG_HAVE_BUILTIN_FFSL
 
 int
 _cg_util_ffsl_wrapper(long int num)
@@ -107,9 +107,9 @@ _cg_util_ffsl_wrapper(long int num)
     return i;
 }
 
-#endif /* CG_UTIL_HAVE_BUILTIN_FFSL */
+#endif /* CG_HAVE_BUILTIN_FFSL */
 
-#ifndef CG_UTIL_HAVE_BUILTIN_POPCOUNTL
+#ifndef CG_HAVE_BUILTIN_POPCOUNTL
 
 const unsigned char _cg_util_popcount_table[256] = {
     0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4,
@@ -125,7 +125,7 @@ const unsigned char _cg_util_popcount_table[256] = {
     4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8
 };
 
-#endif /* CG_UTIL_HAVE_BUILTIN_POPCOUNTL */
+#endif /* CG_HAVE_BUILTIN_POPCOUNTL */
 
 /* tests/conform/test-bitmask.c tests some cg internals and includes this
  * file directly but since these functions depend on other internal CGlib

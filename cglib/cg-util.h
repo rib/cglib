@@ -123,15 +123,8 @@ _cg_util_one_at_a_time_hash(unsigned int hash, const void *key, size_t bytes)
 
 unsigned int _cg_util_one_at_a_time_mix(unsigned int hash);
 
-/* These two builtins are available since GCC 3.4 */
-#if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
-#define CG_UTIL_HAVE_BUILTIN_FFSL
-#define CG_UTIL_HAVE_BUILTIN_POPCOUNTL
-#define CG_UTIL_HAVE_BUILTIN_CLZ
-#endif
-
 /* The 'ffs' function is part of C99 so it isn't always available */
-#ifdef HAVE_FFS
+#ifdef CG_HAVE_FFS
 #define _cg_util_ffs ffs
 #else
 int _cg_util_ffs(int num);
@@ -139,7 +132,7 @@ int _cg_util_ffs(int num);
 
 /* The 'ffsl' function is non-standard but GCC has a builtin for it
    since 3.4 which we can use */
-#ifdef CG_UTIL_HAVE_BUILTIN_FFSL
+#ifdef CG_HAVE_BUILTIN_FFSL
 #define _cg_util_ffsl __builtin_ffsl
 #else
 /* If ints and longs are the same size we can just use ffs. Hopefully
@@ -148,12 +141,12 @@ int _cg_util_ffs(int num);
     (sizeof(long int) == sizeof(int) ? _cg_util_ffs((int)x)                    \
      : _cg_util_ffsl_wrapper(x))
 int _cg_util_ffsl_wrapper(long int num);
-#endif /* CG_UTIL_HAVE_BUILTIN_FFSL */
+#endif /* CG_HAVE_BUILTIN_FFSL */
 
 static inline unsigned int
 _cg_util_fls(unsigned int n)
 {
-#ifdef CG_UTIL_HAVE_BUILTIN_CLZ
+#ifdef CG_HAVE_BUILTIN_CLZ
     return n == 0 ? 0 : sizeof(unsigned int) * 8 - __builtin_clz(n);
 #else
     unsigned int v = 1;
@@ -168,7 +161,7 @@ _cg_util_fls(unsigned int n)
 #endif
 }
 
-#ifdef CG_UTIL_HAVE_BUILTIN_POPCOUNTL
+#ifdef CG_HAVE_BUILTIN_POPCOUNTL
 #define _cg_util_popcountl __builtin_popcountl
 #else
 extern const unsigned char _cg_util_popcount_table[256];
@@ -189,7 +182,7 @@ _cg_util_popcountl(unsigned long num)
     return sum;
 }
 
-#endif /* CG_UTIL_HAVE_BUILTIN_POPCOUNTL */
+#endif /* CG_HAVE_BUILTIN_POPCOUNTL */
 
 /* Match a cg_pixel_format_t according to channel masks, color depth,
  * bits per pixel and byte order. These information are provided by
