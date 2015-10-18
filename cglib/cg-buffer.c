@@ -37,9 +37,7 @@
  * Pixel Buffers API.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <cglib-config.h>
-#endif
 
 #include <stdio.h>
 #include <string.h>

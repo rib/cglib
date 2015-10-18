@@ -29,9 +29,7 @@
  *   Robert Bragg <robert@linux.intel.com>
  */
 
-#ifdef HAVE_CONFIG_H
 #include <cglib-config.h>
-#endif
 
 #include "cg-object.h"
 

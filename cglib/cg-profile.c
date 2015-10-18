@@ -1,6 +1,4 @@
-#ifdef HAVE_CONFIG_H
 #include <cglib-config.h>
-#endif
 
 #ifdef ENABLE_PROFILE
 

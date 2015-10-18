@@ -31,9 +31,7 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
 #include <cglib-config.h>
-#endif
 
 #include "cg-renderer-private.h"
 #include "cg-display-private.h"

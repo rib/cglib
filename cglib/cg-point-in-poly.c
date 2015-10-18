@@ -34,9 +34,7 @@
  * http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
  */
 
-#ifdef HAVE_CONFIG_H
 #include <cglib-config.h>
-#endif
 
 #include "cg-util.h"
 #include "cg-point-in-poly-private.h"

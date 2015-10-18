@@ -28,9 +28,7 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
 #include <cglib-config.h>
-#endif
 
 #include "cg-util.h"
 #include "cg-onscreen-private.h"
