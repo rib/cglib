@@ -29,7 +29,7 @@
  *  Neil Roberts   <neil@linux.intel.com>
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include "cg-atlas-private.h"
 #include "cg-rectangle-map.h"

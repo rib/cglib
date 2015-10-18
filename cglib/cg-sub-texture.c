@@ -31,7 +31,7 @@
  *  Neil Roberts   <neil@linux.intel.com>
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #include "cg-util.h"
 #include "cg-texture-private.h"

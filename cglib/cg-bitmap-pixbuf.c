@@ -28,7 +28,7 @@
  *
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include "cg-util.h"
 #include "cg-bitmap-private.h"

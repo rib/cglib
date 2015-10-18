@@ -38,7 +38,7 @@ all:: Makefile cglib.bc
 
 cg-config.h:
 	$(E)echo "#define CG_COMPILATION 1" > cg-config.h;
-	$(E)echo "#include \"config.h\"" >> cg-config.h;
+	$(E)echo "#include \"clib-config.h\"" >> cg-config.h;
 	$(E)echo "#include \"cglib.h\"" >> cg-config.h
 cg-config.pch: $(top_srcdir)/config.h cg-config.h
 

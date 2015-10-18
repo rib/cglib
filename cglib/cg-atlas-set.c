@@ -28,7 +28,7 @@
  *
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include "cg-atlas-set.h"
 #include "cg-atlas-set-private.h"

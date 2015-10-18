@@ -63,7 +63,7 @@
 
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include <stdint.h>
 

@@ -27,7 +27,7 @@
  *
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>

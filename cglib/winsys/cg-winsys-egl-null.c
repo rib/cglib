@@ -31,7 +31,7 @@
  *   Neil Roberts <neil@linux.intel.com>
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #include "cg-winsys-egl-null-private.h"
 #include "cg-winsys-egl-private.h"

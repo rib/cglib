@@ -27,7 +27,7 @@
  *
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #include "cg-renderer-private.h"
 #include "cg-webgl-renderer.h"

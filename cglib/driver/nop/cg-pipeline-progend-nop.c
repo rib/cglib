@@ -27,7 +27,7 @@
  *
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include "cg-pipeline-private.h"
 #include "cg-framebuffer-private.h"

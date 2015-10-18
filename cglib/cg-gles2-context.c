@@ -33,7 +33,7 @@
  *
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #include <string.h>
 

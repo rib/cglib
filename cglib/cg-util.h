@@ -41,9 +41,9 @@
 #include <stdio.h>
 #endif
 
-/* Double check that config.h has been included */
+/* Double check that clib-config.h has been included */
 #if !defined(PACKAGE_NAME) && !defined(_CG_IN_TEST_BITMASK)
-#error "config.h must be included before including cg-util.h"
+#error "cglib-config.h must be included before including cg-util.h"
 #endif
 
 /* When compiling with Visual Studio, symbols that represent data that

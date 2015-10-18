@@ -28,7 +28,7 @@
  *
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include "cg-object.h"
 #include "cg-private.h"

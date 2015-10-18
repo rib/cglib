@@ -27,7 +27,7 @@
  *
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #include <emscripten.h>
 #include <html5.h>

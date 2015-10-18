@@ -52,7 +52,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <cglib-config.h>
 #endif
 
 #include "cg-memory-stack-private.h"

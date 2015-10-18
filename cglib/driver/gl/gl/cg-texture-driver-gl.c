@@ -33,7 +33,7 @@
  *  Robert Bragg   <robert@linux.intel.com>
  */
 
-#include "config.h"
+#include <cglib-config.h>
 
 #include "cg-private.h"
 #include "cg-util.h"

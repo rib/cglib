@@ -28,7 +28,7 @@
  *
  */
 
-#include <config.h>
+#include <cglib-config.h>
 
 #include <stdlib.h>
 
