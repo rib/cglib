@@ -54,7 +54,7 @@
  * GL/GLES compatibility defines for the buffer API:
  */
 
-#if defined(HAVE_CG_GL)
+#if defined(CG_HAS_GL_SUPPORT)
 
 #ifndef GL_PIXEL_UNPACK_BUFFER
 #define GL_PIXEL_UNPACK_BUFFER GL_PIXEL_UNPACK_BUFFER_ARB

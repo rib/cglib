@@ -28,12 +28,13 @@
  *
  */
 
-#ifndef __CG_H__
-#define __CG_H__
+#pragma once
 
 #ifndef CG_COMPILATION
 #define __CG_H_INSIDE__
 #endif
+
+#include <cglib/cglib-platform.h>
 
 #include <cglib/cg-defines.h>
 #include <cglib/cg-error.h>
@@ -46,11 +47,6 @@
 #include <cglib/cg-texture.h>
 #include <cglib/cg-types.h>
 #include <cglib/cg-version.h>
-
-#ifdef CG_HAS_GTYPE_SUPPORT
-/* GType integration */
-#include <cglib/cg-enum-types.h>
-#endif
 
 #include <cglib/cg-renderer.h>
 #include <cglib/cg-output.h>
@@ -101,4 +97,3 @@
 #undef __CG_H_INSIDE__
 #endif
 
-#endif /* __CG_H__ */

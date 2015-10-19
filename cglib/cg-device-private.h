@@ -31,7 +31,7 @@
 #ifndef __CG_DEVICE_PRIVATE_H
 #define __CG_DEVICE_PRIVATE_H
 
-#ifdef USE_UV
+#ifdef CG_HAS_UV_SUPPORT
 #include <uv.h>
 #endif
 
@@ -104,7 +104,7 @@ struct _cg_device_t {
     unsigned long private_features
     [CG_FLAGS_N_LONGS_FOR_SIZE(CG_N_PRIVATE_FEATURES)];
 
-#ifdef USE_UV
+#ifdef CG_HAS_UV_SUPPORT
     uv_loop_t *uv_mainloop;
     uv_prepare_t uv_mainloop_prepare;
     uv_timer_t uv_mainloop_timer;

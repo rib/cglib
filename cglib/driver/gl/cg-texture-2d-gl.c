@@ -405,7 +405,7 @@ allocate_from_gl_foreign(cg_texture_2d_t *tex_2d,
 /* Obtain texture parameters
    (only level 0 we are interested in) */
 
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     if (_cg_has_private_feature(dev,
                                 CG_PRIVATE_FEATURE_QUERY_TEXTURE_PARAMETERS)) {
         GE(dev,

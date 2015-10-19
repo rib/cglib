@@ -103,7 +103,7 @@ void
 _cg_texture_gl_maybe_update_max_level(cg_texture_t *texture, int max_level)
 {
 /* This isn't supported on GLES */
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     cg_device_t *dev = texture->dev;
 
     if (_cg_has_private_feature(dev, CG_PRIVATE_FEATURE_TEXTURE_MAX_LEVEL) &&
@@ -123,7 +123,7 @@ _cg_texture_gl_maybe_update_max_level(cg_texture_t *texture, int max_level)
            glTexParameteri(
                gl_target, GL_TEXTURE_MAX_LEVEL, texture->max_level));
     }
-#endif /* HAVE_CG_GL */
+#endif /* CG_HAS_GL_SUPPORT */
 }
 
 void

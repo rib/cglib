@@ -76,7 +76,7 @@ _cg_texture_driver_gen(cg_device_t *dev,
  * level to 0 so OpenGL will consider the texture storage to be
  * "complete".
  */
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
         if (_cg_has_private_feature(dev, CG_PRIVATE_FEATURE_TEXTURE_MAX_LEVEL))
             GE(dev, glTexParameteri(gl_target, GL_TEXTURE_MAX_LEVEL, 0));
 #endif

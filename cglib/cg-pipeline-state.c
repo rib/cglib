@@ -550,7 +550,7 @@ arg_to_gl_blend_factor(cg_blend_string_argument_t *arg)
                 return GL_DST_ALPHA;
         }
     }
-#if defined(HAVE_CG_GLES2) || defined(HAVE_CG_GL)
+#if defined(CG_HAS_GLES2_SUPPORT) || defined(CG_HAS_GL_SUPPORT)
     else if (arg->factor.source.info->type ==
              CG_BLEND_STRING_COLOR_SOURCE_CONSTANT) {
         if (arg->factor.source.mask != CG_BLEND_STRING_CHANNEL_MASK_ALPHA) {

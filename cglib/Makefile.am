@@ -121,18 +121,18 @@ endif
 EXTRA_DIST += stb_image.c
 
 if UNIT_TESTS
-lib_LTLIBRARIES += libcg.la
+lib_LTLIBRARIES += libcglib.la
 else
-noinst_LTLIBRARIES += libcg.la
+noinst_LTLIBRARIES += libcglib.la
 endif
 
-libcg_la_LIBADD = $(LIBM) $(CG_DEP_LIBS) $(CG_EXTRA_LDFLAGS)
-libcg_la_LIBADD += $(top_builddir)/clib/clib/libclib.la
+libcglib_la_LIBADD = $(LIBM) $(CG_DEP_LIBS) $(CG_EXTRA_LDFLAGS)
+libcglib_la_LIBADD += $(top_builddir)/clib/clib/libclib.la
 if UNIT_TESTS
-libcg_la_LIBADD += $(top_builddir)/test-fixtures/libtest-fixtures.la
+libcglib_la_LIBADD += $(top_builddir)/test-fixtures/libtest-fixtures.la
 endif
-#libcg_la_LDFLAGS = -static
-libcg_la_SOURCES = $(cg_sources_c)
+#libcglib_la_LDFLAGS = -static
+libcglib_la_SOURCES = $(cg_sources_c)
 
 android_moduledir = $(datadir)/android_modules/cg
 nobase_android_module_DATA = $(cg_android_sources) Android.mk

@@ -48,7 +48,7 @@
  * The major version of the CGlib library (1, if %CG_VERSION is 1.2.3)
  *
  */
-#define CG_VERSION_MAJOR CG_VERSION_MAJOR_INTERNAL
+#define CG_VERSION_MAJOR 1
 
 /**
  * CG_VERSION_MINOR:
@@ -56,7 +56,7 @@
  * The minor version of the CGlib library (2, if %CG_VERSION is 1.2.3)
  *
  */
-#define CG_VERSION_MINOR CG_VERSION_MINOR_INTERNAL
+#define CG_VERSION_MINOR 0
 
 /**
  * CG_VERSION_MICRO:
@@ -64,7 +64,7 @@
  * The micro version of the CGlib library (3, if %CG_VERSION is 1.2.3)
  *
  */
-#define CG_VERSION_MICRO CG_VERSION_MICRO_INTERNAL
+#define CG_VERSION_MICRO 0
 
 /**
  * CG_VERSION_STRING:
@@ -73,7 +73,7 @@
  * string concatenation)
  *
  */
-#define CG_VERSION_STRING CG_VERSION_STRING_INTERNAL
+#define CG_VERSION_STRING C_STRINGIFY(CG_VERSION_MAJOR) "." C_STRINGIFY(CG_VERSION_MINOR) "." C_STRINGIFY(CG_VERSION_MICRO)
 
 /* Macros to handle compacting a 3-component version number into an
  * int for quick comparison. This assumes all of the components are <=

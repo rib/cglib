@@ -248,7 +248,7 @@ _cg_gl_use_program(cg_device_t *dev, GLuint gl_program)
     }
 }
 
-#if defined(HAVE_CG_GLES2) || defined(HAVE_CG_GL)
+#if defined(CG_HAS_GLES2_SUPPORT) || defined(CG_HAS_GL_SUPPORT)
 
 static bool
 blend_factor_uses_constant(GLenum blend_factor)
@@ -347,7 +347,7 @@ get_max_activateable_texture_units(cg_device_t *dev)
         int n_values = 0;
         int i;
 
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
         if (!_cg_has_private_feature(dev, CG_PRIVATE_FEATURE_GL_EMBEDDED)) {
             /* GL_MAX_TEXTURE_COORDS is provided for GLSL. It defines
              * the number of texture coordinates that can be uploaded
@@ -366,9 +366,9 @@ get_max_activateable_texture_units(cg_device_t *dev)
                                  values + n_values++));
             }
         }
-#endif /* HAVE_CG_GL */
+#endif /* CG_HAS_GL_SUPPORT */
 
-#ifdef HAVE_CG_GLES2
+#ifdef CG_HAS_GLES2_SUPPORT
         if (_cg_has_private_feature(dev, CG_PRIVATE_FEATURE_GL_EMBEDDED)) {
             GE(dev, glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, values + n_values));
             /* Two of the vertex attribs need to be used for the position
@@ -632,7 +632,7 @@ _cg_pipeline_flush_common_gl_state(cg_device_t *dev,
         }
     }
 
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     if (_cg_has_private_feature(dev,
                                 CG_PRIVATE_FEATURE_ENABLE_PROGRAM_POINT_SIZE) &&
         (pipelines_difference & CG_PIPELINE_STATE_PER_VERTEX_POINT_SIZE)) {

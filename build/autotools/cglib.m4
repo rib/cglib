@@ -173,9 +173,10 @@ AC_DEFUN([AM_CGLIB],
 
           enabled_drivers="$enabled_drivers gles2"
 
-          cg_gl_headers="GLES2/gl2.h GLES2/gl2ext.h"
           AC_DEFINE([HAVE_CG_GLES2], 1, [Have GLES 2.0 for rendering])
           HAVE_GLES2=1
+
+          CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_GLES2_SUPPORT"
 
           AS_IF([test "x$emscripten_compiler" = "xyes"],
                 [
@@ -213,11 +214,8 @@ AC_DEFUN([AM_CGLIB],
 
           PKG_CHECK_EXISTS([x11], [ALLOW_GLX=yes])
 
-          cg_gl_headers="GL/gl.h"
-
           AS_IF([test "x$platform_darwin" = "xyes"],
                 [
-                  cg_gl_headers="OpenGL/gl.h"
                   CG_EXTRA_LDFLAGS="$CG_EXTRA_LDFLAGS -framework OpenGL"
                   dnl The GL API is being directly linked in so there is
                   dnl no need to dlopen it separately
@@ -250,7 +248,7 @@ AC_DEFUN([AM_CGLIB],
 
           AC_DEFINE([HAVE_CG_GL], [1], [Have GL for rendering])
 
-          CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_GL"
+          CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_GL_SUPPORT"
           HAVE_GL=1
         ])
 
@@ -283,7 +281,6 @@ AC_DEFUN([AM_CGLIB],
           CG_GLES2_LIBNAME=""
           AC_DEFINE([HAVE_CG_WEBGL], 1, [Have WebGL for rendering])
 
-          cg_gl_headers="GLES2/gl2.h GLES2/gl2ext.h"
           AC_DEFINE([HAVE_CG_GLES2], 1, [Have GLES 2.0 for rendering])
           HAVE_GLES2=1
         ])
@@ -540,9 +537,7 @@ AC_DEFUN([AM_CGLIB],
           SUPPORT_X11=yes
           SUPPORT_XLIB=yes
 
-          CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_X11"
           CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_X11_SUPPORT"
-          CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_XLIB"
           CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_XLIB_SUPPORT"
         ])
 
@@ -585,21 +580,6 @@ AC_DEFUN([AM_CGLIB],
         [AC_CHECK_FUNCS([ffs])])
 
   dnl ================================================================
-  dnl Platform values
-  dnl ================================================================
-
-  dnl These are values from system headers that we want to copy into the
-  dnl public CGlib headers without having to include the system header
-  dnl
-  dnl XXX: poll(2) can't currently be used with emscripten even though
-  dnl poll.h is in the toolchain headers so we manually skip the check
-  dnl in this case
-  AS_IF([test "x$emscripten_compiler" = "xno"],
-        [
-          AC_CHECK_HEADER(poll.h, [ CG_DEFINES_SYMBOLS="$CG_DEFINES_SYMBOLS CG_HAS_POLL_SUPPORT" ])
-        ])
-
-  dnl ================================================================
   dnl What needs to be substituted in other files
   dnl ================================================================
 
@@ -609,11 +589,6 @@ AC_DEFUN([AM_CGLIB],
   AC_SUBST([HAVE_GLES2])
   AC_SUBST([CG_DEFAULT_DRIVER])
 
-  if test "x$GL_LIBRARY_DIRECTLY_LINKED" = "xyes"; then
-     AC_DEFINE([HAVE_DIRECTLY_LINKED_GL_LIBRARY], [1],
-               [Defined if the GL library should not be dlopened])
-  fi
-
   CG_DEFINES="$CG_DEFINES_EXTRA"
   for x in $CG_DEFINES_SYMBOLS; do
     CG_DEFINES="$CG_DEFINES
@@ -622,30 +597,10 @@ AC_DEFUN([AM_CGLIB],
   AC_SUBST(CG_DEFINES)
   AM_SUBST_NOTMAKE(CG_DEFINES)
 
-  AS_IF([test "x$cg_gl_headers" = "x"],
-        [AC_MSG_ERROR([Internal error: no GL header set])])
-  dnl cg_gl_headers is a space separate list of headers to
-  dnl include. We'll now convert them to a single variable with a
-  dnl #include line for each header
-  CG_GL_HEADER_INCLUDES=""
-  for x in $cg_gl_headers; do
-    CG_GL_HEADER_INCLUDES="$CG_GL_HEADER_INCLUDES
-  #include <$x>"
-  done;
-  AC_SUBST(CG_GL_HEADER_INCLUDES)
-  AM_SUBST_NOTMAKE(CG_GL_HEADER_INCLUDES)
-
   AC_SUBST(CG_DEP_CFLAGS)
   AC_SUBST(CG_DEP_LIBS)
   AC_SUBST(CG_EXTRA_CFLAGS)
   AC_SUBST(CG_EXTRA_LDFLAGS)
-
-  AC_OUTPUT(
-  cglib/Makefile
-  cglib/cg-defines.h
-  cglib/cg-gl-header.h
-  cglib/cg-egl-defines.h
-  )
 
   dnl ================================================================
   dnl Dah Da!

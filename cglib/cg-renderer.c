@@ -82,11 +82,11 @@
 
 typedef const cg_winsys_vtable_t *(*cg_winsys_vtable_getter_t)(void);
 
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
 extern const cg_texture_driver_t _cg_texture_driver_gl;
 extern const cg_driver_vtable_t _cg_driver_gl;
 #endif
-#if defined(HAVE_CG_GLES) || defined(HAVE_CG_GLES2)
+#ifdef CG_HAS_GLES2_SUPPORT
 extern const cg_texture_driver_t _cg_texture_driver_gles;
 extern const cg_driver_vtable_t _cg_driver_gles;
 #endif
@@ -109,7 +109,7 @@ typedef struct _cg_driver_description_t {
 } cg_driver_description_t;
 
 static cg_driver_description_t _cg_drivers[] = {
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     { CG_DRIVER_GL3,
       "gl3",
       0,
@@ -125,7 +125,7 @@ static cg_driver_description_t _cg_drivers[] = {
       &_cg_texture_driver_gl,
       CG_GL_LIBNAME, },
 #endif
-#ifdef HAVE_CG_GLES2
+#ifdef CG_HAS_GLES2_SUPPORT
     { CG_DRIVER_GLES2, "gles2", CG_RENDERER_CONSTRAINT_SUPPORTS_CG_GLES2,
       { CG_PRIVATE_FEATURE_ANY_GL,          CG_PRIVATE_FEATURE_GL_EMBEDDED,
         CG_PRIVATE_FEATURE_GL_PROGRAMMABLE, -1 },
@@ -723,7 +723,7 @@ cg_renderer_get_n_fragment_texture_units(cg_renderer_t *renderer)
 
     _CG_GET_DEVICE(dev, 0);
 
-#if defined(HAVE_CG_GL) || defined(HAVE_CG_GLES2)
+#if defined(CG_HAS_GL_SUPPORT) || defined(CG_HAS_GLES2_SUPPORT)
     if (cg_has_feature(dev, CG_FEATURE_ID_GLSL))
         GE(dev, glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &n));
 #endif

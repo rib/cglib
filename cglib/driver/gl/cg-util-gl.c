@@ -47,7 +47,7 @@ static const struct {
     { GL_INVALID_ENUM, "Invalid enumeration value" },
     { GL_INVALID_VALUE, "Invalid value" },
     { GL_INVALID_OPERATION, "Invalid operation" },
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     { GL_STACK_OVERFLOW, "Stack overflow" },
     { GL_STACK_UNDERFLOW, "Stack underflow" },
 #endif

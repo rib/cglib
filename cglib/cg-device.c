@@ -54,7 +54,7 @@
 #include "cg-config-private.h"
 #include "cg-error-private.h"
 
-#ifdef USE_UV
+#ifdef CG_HAS_UV_SUPPORT
 #include "cg-uv-private.h"
 #endif
 
@@ -354,7 +354,7 @@ cg_device_connect(cg_device_t *dev, cg_error_t **error)
     dev->texture_download_pipeline = NULL;
     dev->blit_texture_pipeline = NULL;
 
-#if defined(HAVE_CG_GL)
+#if defined(CG_HAS_GL_SUPPORT)
     if ((dev->driver == CG_DRIVER_GL3)) {
         GLuint vertex_array;
 
@@ -483,7 +483,7 @@ _cg_device_free(cg_device_t *dev)
 
     c_byte_array_free(dev->buffer_map_fallback_array, true);
 
-#ifdef USE_UV
+#ifdef CG_HAS_UV_SUPPORT
     _cg_uv_cleanup(dev);
 #endif
 
@@ -559,7 +559,7 @@ _cg_device_get_gl_extensions(cg_device_t *dev)
 
 /* In GL 3, querying GL_EXTENSIONS is deprecated so we have to build
  * the array using glGetStringi instead */
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     if (dev->driver == CG_DRIVER_GL3) {
         int num_extensions, i;
 

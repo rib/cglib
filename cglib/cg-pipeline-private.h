@@ -169,7 +169,7 @@ typedef enum _cg_pipeline_blend_enable_t {
 
 typedef struct {
 /* Determines how this pipeline is blended with other primitives */
-#if defined(HAVE_CG_GLES2) || defined(HAVE_CG_GL)
+#if defined(CG_HAS_GLES2_SUPPORT) || defined(CG_HAS_GL_SUPPORT)
     GLenum blend_equation_rgb;
     GLenum blend_equation_alpha;
     GLint blend_src_factor_alpha;

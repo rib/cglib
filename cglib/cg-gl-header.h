@@ -28,19 +28,31 @@
  *
  */
 
+#pragma once
+
 #if !defined(CG_COMPILATION)
 #error "cg-gl-header.h should only be included when compiling CGlib"
 #endif
 
-#ifndef __CG_GL_HEADER_H__
-#define __CG_GL_HEADER_H__
-
+#include "cglib-platform.h"
 #include "cg-defines.h"
 
-@CG_GL_HEADER_INCLUDES@
+#ifdef CG_HAS_GL_SUPPORT
+
+  #if defined(C_PLATFORM_MAC)
+    #include <OpenGL/gl.h>
+  #else
+    #include <GL/gl.h>
+  #endif
+
+#elif defined(CG_HAS_GLES2_SUPPORT)
+
+  #include <GLES2/gl2.h>
+  #include <GLES2/gl2ext.h>
+
+#endif
 
 #ifndef GL_OES_EGL_image
 #define GLeglImageOES void *
 #endif
 
-#endif /* __CG_GL_HEADER_H__ */

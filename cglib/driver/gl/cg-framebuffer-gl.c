@@ -967,7 +967,7 @@ _cg_framebuffer_init_bits(cg_framebuffer_t *framebuffer)
     _cg_framebuffer_flush_state(
         framebuffer, framebuffer, CG_FRAMEBUFFER_STATE_BIND);
 
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     if (_cg_has_private_feature(dev,
                                 CG_PRIVATE_FEATURE_QUERY_FRAMEBUFFER_BITS) &&
         framebuffer->type == CG_FRAMEBUFFER_TYPE_OFFSCREEN) {
@@ -1000,7 +1000,7 @@ _cg_framebuffer_init_bits(cg_framebuffer_t *framebuffer)
                                                      value));
         }
     } else
-#endif /* HAVE_CG_GL */
+#endif /* CG_HAS_GL_SUPPORT */
     {
         GE(dev, glGetIntegerv(GL_RED_BITS, &framebuffer->bits.red));
         GE(dev, glGetIntegerv(GL_GREEN_BITS, &framebuffer->bits.green));

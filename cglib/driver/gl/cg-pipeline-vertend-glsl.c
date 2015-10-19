@@ -503,7 +503,7 @@ _cg_pipeline_vertend_glsl_end(cg_device_t *dev,
         shader_state->gl_shader = shader;
     }
 
-#ifdef HAVE_CG_GL
+#ifdef CG_HAS_GL_SUPPORT
     if (_cg_has_private_feature(
             dev, CG_PRIVATE_FEATURE_BUILTIN_POINT_SIZE_UNIFORM) &&
         (pipelines_difference & CG_PIPELINE_STATE_POINT_SIZE)) {
@@ -513,7 +513,7 @@ _cg_pipeline_vertend_glsl_end(cg_device_t *dev,
         if (authority->big_state->point_size > 0.0f)
             GE(dev, glPointSize(authority->big_state->point_size));
     }
-#endif /* HAVE_CG_GL */
+#endif /* CG_HAS_GL_SUPPORT */
 
     return true;
 }

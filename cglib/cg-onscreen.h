@@ -64,7 +64,7 @@ typedef struct _cg_onscreen_t cg_onscreen_t;
  */
 cg_onscreen_t *cg_onscreen_new(cg_device_t *dev, int width, int height);
 
-#ifdef CG_HAS_X11
+#ifdef CG_HAS_X11_SUPPORT
 typedef void (*cg_onscreen_x11_mask_callback_t)(cg_onscreen_t *onscreen,
                                                 uint32_t event_mask,
                                                 void *user_data);
@@ -146,7 +146,7 @@ uint32_t cg_x11_onscreen_get_window_xid(cg_onscreen_t *onscreen);
 /* XXX: we should maybe remove this, since nothing currently uses
  * it and the current implementation looks dubious. */
 uint32_t cg_x11_onscreen_get_visual_xid(cg_onscreen_t *onscreen);
-#endif /* CG_HAS_X11 */
+#endif /* CG_HAS_X11_SUPPORT */
 
 #ifdef CG_HAS_WIN32_SUPPORT
 /**

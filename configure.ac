@@ -64,6 +64,8 @@ AM_CGLIB
 
 AC_OUTPUT(
 Makefile
+cglib/Makefile
+cglib/cg-defines.h
 test-fixtures/Makefile
 clib/Makefile
 clib/clib/Makefile

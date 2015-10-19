@@ -165,7 +165,7 @@ _cg_pipeline_init_default_pipeline(void)
     alpha_state->alpha_func_reference = 0.0;
 
 /* Not the same as the GL default, but seems saner... */
-#if defined(HAVE_CG_GLES2) || defined(HAVE_CG_GL)
+#if defined(CG_HAS_GLES2_SUPPORT) || defined(CG_HAS_GL_SUPPORT)
     blend_state->blend_equation_rgb = GL_FUNC_ADD;
     blend_state->blend_equation_alpha = GL_FUNC_ADD;
     blend_state->blend_src_factor_alpha = GL_ONE;

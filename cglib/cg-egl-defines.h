@@ -28,13 +28,15 @@
  *
  */
 
-#ifndef __CG_EGL_DEFINES_H__
-#define __CG_EGL_DEFINES_H__
+#pragma once
+
+#include <cglib/cglib-platform.h>
+#include <cglib/cg-defines.h>
 
 #ifdef CG_HAS_EGL_SUPPORT
 
-@CG_EGL_INCLUDES@
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
 
 #endif /* CG_HAS_EGL_SUPPORT */
 
-#endif
