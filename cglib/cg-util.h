@@ -46,19 +46,6 @@
 #error "cglib-config.h must be included before including cg-util.h"
 #endif
 
-/* When compiling with Visual Studio, symbols that represent data that
-   are exported out of the DLL need to be marked with the dllexport
-   attribute. */
-#ifdef _MSC_VER
-#ifdef CG_BUILD_EXP
-#define CG_EXPORT __declspec(dllexport)
-#else
-#define CG_EXPORT __declspec(dllimport)
-#endif
-#else
-#define CG_EXPORT
-#endif
-
 int _cg_util_next_p2(int a);
 
 /* The signbit macro is defined by ISO C99 so it should be available,

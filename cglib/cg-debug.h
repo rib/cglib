@@ -79,10 +79,7 @@ typedef enum {
 extern c_hash_table_t *_cg_debug_instances;
 #define CG_DEBUG_N_LONGS CG_FLAGS_N_LONGS_FOR_SIZE(CG_DEBUG_N_FLAGS)
 
-/* _cg_debug_flags currently needs to exported outside of the shared
-   library for cg-pango. The special CG_EXPORT macro is needed to
-   get this to work when building with MSVC */
-CG_EXPORT extern unsigned long _cg_debug_flags[CG_DEBUG_N_LONGS];
+extern unsigned long _cg_debug_flags[CG_DEBUG_N_LONGS];
 
 #define CG_DEBUG_ENABLED(flag) CG_FLAGS_GET(_cg_debug_flags, flag)
 
