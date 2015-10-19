@@ -42,7 +42,7 @@
 #endif
 
 /* Double check that clib-config.h has been included */
-#if !defined(PACKAGE_NAME) && !defined(_CG_IN_TEST_BITMASK)
+#if !defined(_CG_CONFIG_H) && !defined(_CG_IN_TEST_BITMASK)
 #error "cglib-config.h must be included before including cg-util.h"
 #endif
 
