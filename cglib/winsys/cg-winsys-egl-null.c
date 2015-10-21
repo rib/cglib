@@ -38,6 +38,7 @@
 #include "cg-renderer-private.h"
 #include "cg-framebuffer-private.h"
 #include "cg-onscreen-private.h"
+#include "cg-error-private.h"
 
 static const cg_winsys_egl_vtable_t _cg_winsys_egl_vtable;
 
