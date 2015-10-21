@@ -12,8 +12,8 @@ noinst_LTLIBRARIES =
 lib_LTLIBRARIES =
 
 AM_CPPFLAGS = \
-	-I$(top_srcdir)				\
-	-I$(top_builddir)			\
+	-I$(srcdir)/../				\
+	-I$(builddir)/../			\
 	-I$(srcdir)/winsys 			\
 	-I$(srcdir)/driver/nop 			\
 	-I$(srcdir)/driver/gl 			\
