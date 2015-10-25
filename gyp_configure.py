@@ -92,7 +92,7 @@ options = {
         },
         "x11": {
             "enabled": True,
-            "pkg-config": "x11",
+            "pkg-config": "x11 xdamage xcomposite xfixes xext xrandr",
             "public_defines": { "CG_HAS_XLIB_SUPPORT", "CG_HAS_X11_SUPPORT" }
         },
         "glx": {
