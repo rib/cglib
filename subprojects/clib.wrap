@@ -1,0 +1,4 @@
+[wrap-git]
+directory=clib
+url=https://github.com/rib/clib
+revision=9dece4ef522ba58ecf333f38f01ec79109021ad8
