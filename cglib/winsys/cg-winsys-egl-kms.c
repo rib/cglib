@@ -60,6 +60,7 @@
 #include "cg-version.h"
 #include "cg-error-private.h"
 #include "cg-loop-private.h"
+#include "cg-frame-info-private.h"
 
 static const cg_winsys_egl_vtable_t _cg_winsys_egl_vtable;
 
@@ -158,18 +159,14 @@ page_flip_handler(int fd,
         cg_onscreen_t *onscreen = flip->onscreen;
         cg_onscreen_egl_t *egl_onscreen = onscreen->winsys;
         cg_onscreen_kms_t *kms_onscreen = egl_onscreen->platform;
-        cg_device_t *dev = CG_FRAMEBUFFER(onscreen)->dev;
-        cg_renderer_t *renderer = dev->display->renderer;
-        cg_renderer_egl_t *egl_renderer = renderer->winsys;
-        cg_renderer_kms_t *kms_renderer = egl_renderer->platform;
         cg_frame_info_t *info =
             c_queue_pop_head(&onscreen->pending_frame_infos);
 
         info->presentation_time =
             (int64_t)sec * (int64_t)1000000000 + usec * 1000;
 
-        _cg_onscreen_notify_frame_sync(onscreen, info);
-        _cg_onscreen_notify_complete(onscreen, info);
+        _cg_onscreen_queue_event(onscreen, CG_FRAME_EVENT_SYNC, info);
+        _cg_onscreen_queue_event(onscreen, CG_FRAME_EVENT_COMPLETE, info);
 
         cg_object_unref(info);
 
@@ -838,12 +835,12 @@ _cg_winsys_egl_device_init(cg_device_t *dev,
     cg_renderer_t *renderer = dev->display->renderer;
     cg_renderer_egl_t *egl_renderer = renderer->winsys;
     cg_renderer_kms_t *kms_renderer = egl_renderer->platform;
+    uint64_t cap = 0;
     int ret;
 
     CG_FLAGS_SET(dev->winsys_features,
                  CG_WINSYS_FEATURE_SYNC_AND_COMPLETE_EVENT,
                  true);
-
 
     ret = drmGetCap(kms_renderer->fd, DRM_CAP_TIMESTAMP_MONOTONIC, &cap);
     if (ret ==0 && cap == 1) {
